@@ -1,0 +1,5 @@
+exp_values:
+  exp3:
+    days: 365
+    n_exp: 100
+    n_people: 850
