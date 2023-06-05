@@ -4,8 +4,6 @@ import matplotlib.pyplot as plt
 
 YEAR = 365
 
-
-
 def generate_temperature_curve(tip):
 
     if tip == 'hot':

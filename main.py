@@ -5,5 +5,5 @@ import yaml
 with open('config.yml', 'r') as file:
     config = yaml.safe_load(file)
 
-exp_values = config['exp_values']
+exp_values = config['electric']
 print(exp_values)

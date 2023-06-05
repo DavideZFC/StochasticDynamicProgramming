@@ -1,5 +1,17 @@
-exp_values:
-  exp3:
-    days: 365
-    n_exp: 100
-    n_people: 850
+gas:
+  cg: 2.0
+reserve:
+  cr: 1000.0
+  sc: 0.02
+demand:
+  sigma: 1.0
+solar:
+  gs: 1.0
+  gc: 0.1
+wind:
+  ps: 0.4
+  pp: 0.1
+  w: 10.0
+electric:
+  ce: 1.0
+  pe: 0.3
