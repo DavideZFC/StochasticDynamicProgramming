@@ -5,6 +5,7 @@ reserve:
   sc: 0.02
 demand:
   sigma: 1.0
+  d : 2.0
 solar:
   gs: 1.0
   gc: 0.1
