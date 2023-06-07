@@ -1,9 +1,7 @@
 import numpy as np
 import yaml
+from classes.MDP import MDP
 
-
-with open('config.yml', 'r') as file:
-    config = yaml.safe_load(file)
-
-exp_values = config['electric']
-print(exp_values)
+env = MDP()
+for t in range(364):
+    env.step([0,0])
