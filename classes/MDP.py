@@ -15,6 +15,15 @@ class MDP:
         self.GAS_history = np.zeros(YEAR)
         self.D_history = np.zeros(YEAR)
 
+    def reset(self):
+        self.s.make_initial()
+
+        self.S_history = np.zeros(YEAR)
+        self.W_history = np.zeros(YEAR)
+        self.GAS_history = np.zeros(YEAR)
+        self.D_history = np.zeros(YEAR)
+        
+
     def step(self, action):
         An = action[0]
         Ab = action[1]
@@ -27,10 +36,9 @@ class MDP:
         self.GAS_history[t] = Ab
         self.D_history[t] = D
 
-        print('reward: {}'.format(reward))
-        self.s.print()
+        return reward
 
-    def plot_energy_profiles(self):
+    def plot_energy_profiles(self,name):
         x = np.linspace(0,YEAR, YEAR)
 
         alpha = 0.5
@@ -40,12 +48,12 @@ class MDP:
         plt.plot(x,self.D_history, color='red',  label='demand')
 
         plt.legend()
-        plt.savefig('profile.pdf')
+        plt.savefig('figures/{}profile.pdf'.format(name))
         plt.show()
 
     
     
-    def plot_monthly_energy_profiles(self):
+    def plot_monthly_energy_profiles(self, name):
         x = np.linspace(0,YEAR, YEAR)
 
         v = np.ones(30)/30
@@ -62,6 +70,6 @@ class MDP:
         plt.plot(x,D_smooth, color='red',  label='demand')
 
         plt.legend()
-        plt.savefig('profile.pdf')
+        plt.savefig('figures/{}profile.pdf'.format(name))
         plt.show()
         

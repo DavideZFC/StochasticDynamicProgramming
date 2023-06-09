@@ -8,11 +8,6 @@ class state:
     def __init__(self):
         # initialize to zero all variables
 
-        self.t = 0
-        self.T = 0
-        self.C = 0
-        self.R = 0
-
         with open('classes\config.yml', 'r') as file:
             self.config = yaml.safe_load(file)
 
@@ -20,6 +15,11 @@ class state:
     def make_initial(self, T0=45, C=1, R=0):
         # command to specify the initial state of the system.
         # default are standard values
+
+        self.t = 0
+        self.T = 0
+        self.C = 0
+        self.R = 0
 
         self.T = T0
         self.C = C
@@ -91,6 +91,18 @@ class state:
         self.R = min(self.R - Ab, self.cr) + An
 
         return reward, S, W, Ab, D
+    
+    def predict_next(self):
+
+        # compute solar energy
+        S = self.gs*self.T if self.C == 0 else self.gc*self.T
+
+        # compute expected wind energy
+        p = self.ps if self.C == 0 else self.pc
+        W = self.w*p
+        E = W + S
+
+        return E
 
     def print(self):
         # print all current values in the state

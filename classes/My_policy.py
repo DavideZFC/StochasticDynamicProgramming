@@ -5,4 +5,7 @@ class My_policy:
         pass
 
     def act(self, state):
-        return [10, 10]
+        d = state.d
+        E = state.predict_next()
+
+        return [d-E, d-E]
