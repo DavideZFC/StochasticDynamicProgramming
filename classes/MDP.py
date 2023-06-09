@@ -1,6 +1,7 @@
 from classes.state import state
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.ndimage import convolve1d
 
 YEAR = 365
 
@@ -37,6 +38,28 @@ class MDP:
         plt.fill_between(x, self.GAS_history, self.S_history+self.GAS_history, color='yellow',  alpha=alpha, label='solar')
         plt.fill_between(x, self.S_history+self.GAS_history, self.S_history+self.GAS_history+self.W_history,  alpha=alpha, color='green', label='wind')
         plt.plot(x,self.D_history, color='red',  label='demand')
+
+        plt.legend()
+        plt.savefig('profile.pdf')
+        plt.show()
+
+    
+    
+    def plot_monthly_energy_profiles(self):
+        x = np.linspace(0,YEAR, YEAR)
+
+        v = np.ones(30)/30
+
+        GAS_smooth = convolve1d(self.GAS_history, v, mode='wrap')
+        S_smooth = convolve1d(self.S_history, v, mode='wrap')
+        W_smooth = convolve1d(self.W_history, v, mode='wrap')
+        D_smooth = convolve1d(self.D_history, v, mode='wrap')
+
+        alpha = 0.5
+        plt.fill_between(x, 0*GAS_smooth, GAS_smooth, color='blue', alpha=alpha, label='gas')
+        plt.fill_between(x, GAS_smooth, S_smooth+GAS_smooth, color='yellow',  alpha=alpha, label='solar')
+        plt.fill_between(x, S_smooth+GAS_smooth, S_smooth+GAS_smooth+W_smooth,  alpha=alpha, color='green', label='wind')
+        plt.plot(x,D_smooth, color='red',  label='demand')
 
         plt.legend()
         plt.savefig('profile.pdf')
