@@ -1,3 +1,6 @@
 from functions.make_experiment import make_experiment
+import fire
 
-make_experiment(seeds = 10)
+
+if __name__ == '__main__':
+    fire.Fire(make_experiment)

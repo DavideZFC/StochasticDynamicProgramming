@@ -7,7 +7,12 @@ from classes.Greedy_policy import Greedy_policy
 from classes.My_policy import My_policy
 import matplotlib.pyplot as plt
 
-def make_experiment(seeds):
+def make_experiment(seeds=1):
+
+    print('###################################')
+    print('Performing the experiment with {} random seeds'.format(seeds))
+    print('###################################')
+
 
     env = MDP()
     my_policy = My_policy()
